@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heartopia Piano Note Translator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Dark mode toggle button -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        <span class="toggle-icon">🌙</span>
+    </button>
+
+    <div class="container">
+        <h1>🎹 Heartopia Piano Note Translator</h1>
+        <p class="subtitle">Convert piano note guides to Heartopia keybinds</p>
+        <div class="piano-info">
+            ℹ️ These keybinds are for the 22-key piano in Heartopia
+        </div>
+
+        <div class="legend">
+            <h3>📖 Supported Syntax</h3>
+            <div class="legend-content">
+                <div class="legend-section">
+                    <strong>Note Names:</strong>
+                    Letter notes: <code>C D E F G A B</code><br>
+                    Solfege: <code>DO RE MI FA SOL LA SI</code> (case-insensitive)
+                </div>
+                <div class="legend-section">
+                    <strong>Octave Markers:</strong>
+                    <code>^</code> = Higher octave (e.g., <code>^C ^D</code>)<br>
+                    <code>.</code> = Lower octave (e.g., <code>.A .B</code>)<br>
+                    No marker = Middle octave
+                </div>
+                <div class="legend-section">
+                    <strong>Accidentals:</strong>
+                    Sharps: <code>#</code> (e.g., <code>C# F#</code>)<br>
+                    Flats: <code>b</code> (e.g., <code>Bb Eb</code>)
+                </div>
+                <div class="legend-section">
+                    <strong>Separators:</strong>
+                    Spaces and hyphens: <code>E-D C-C</code><br>
+                    Parentheses are removed: <code>(C D E)</code>
+                </div>
+            </div>
+            <div class="example">
+                <strong>Example Input:</strong><br>
+                <code>D E E E</code><br>
+                <code>The snow glows white</code><br>
+                <code>^F#-^E-^D</code><br>
+                <code>On the mountain tonight</code>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="translateNotes()">🎵 Translate</button>
+            <button onclick="copyOutput()">📋 Copy Output</button>
+            <button onclick="downloadPDF()">📄 Download PDF</button>
+            <button onclick="clearAll()">🗑️ Clear</button>
+            <div class="checkbox-container">
+                <input type="checkbox" id="showSolfege">
+                <label for="showSolfege">Show DO-RE-MI line above keybinds</label>
+            </div>
+        </div>
+
+        <div class="textarea-container">
+            <label for="input">Input (Paste your note guide):</label>
+            <textarea id="input" placeholder="Paste your piano notes here...&#10;&#10;Example:&#10;D E E E&#10;The snow glows white&#10;E E E - D C - C&#10;On the mountain tonight"></textarea>
+        </div>
+
+        <div class="textarea-container">
+            <label for="output">Output (Heartopia Keybinds):</label>
+            <textarea id="output" readonly placeholder="Translated keybinds will appear here..."></textarea>
+        </div>
+    </div>
+
+    <!-- Decorative piano keys at bottom -->
+    <div class="piano-decoration">
+        <div class="piano-key"></div>
+        <div class="piano-key black"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key black"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key black"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key black"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key black"></div>
+        <div class="piano-key"></div>
+    </div>
+</body>
+</html>
